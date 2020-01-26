@@ -8,5 +8,5 @@ COPY src ./src/
 #specifying commands to be executed while building the image
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 3006
 CMD  node src/index.js

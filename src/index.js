@@ -13,6 +13,6 @@ app.get('/', (req, res) => {
 })
 app.use('/tts', ttsRouter)
 
-app.listen(3000, () => {
-  console.log("server running on port 3000");
+app.listen(3006, () => {
+  console.log("server running on port 3006");
 })

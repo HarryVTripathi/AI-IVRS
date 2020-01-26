@@ -11,31 +11,16 @@ async function getSpeech(req, res, next) {
   const { body } = req;
   console.log(body);
 
+  const { input: { text = 'Sorry I did not understand' } } = body;
+  console.log(text);
+  fs.writeFileSync('a.txt', text, { encoding: 'utf-8' });
+
   const headers = {
     'Content-Type': "application/json",
     'Authentication': "ya29.c.Kmq6BxOjtxVSMa04lRr_SgO_Sv8a19ka2WmyThNeonRMHZZuPs15kg1Sg1nV-jp9xJlUZ68UUrP9nnEDAOJNYMcPeXpSvKKLZ19p1GsU9YHCZFFTeeUO1auFolxUak9MYpBeesjNHQ1eUrKP"
   };
   
-  const body_legacy = {
-    input: {
-      text:"Android is a mobile operating system developed by Google, based on the Linux kernel and designed primarily for touchscreen mobile devices such as smartphones and tablets."
-    },
-    voice: {
-      languageCode:"en-gb",
-      name:"en-GB-Standard-A",
-      ssmlGender:"FEMALE"
-    },
-    audioConfig:{
-      audioEncoding:"MP3"
-    }
-  };
-  
-  const options = {
-    url,
-    body,
-    json: true,
-    method: 'post',
-  };
+  const options = { url, body, json: true, method: 'post' };
 
   try {
     const { body: { audioContent: base64Data } } = await makeRequest(options);
